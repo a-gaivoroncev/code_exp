@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+  code_exp_db:
+    container_name: code_exp_db
+    image: postgres:12
+    env_file:
+      - $PWD/$ENV_FILE_PATH_SECRET
+      - $PWD/$ENV_FILE_PATH_PUBLIC
+    volumes:
+      - $PWD/${PG_SRV_VLM_HOST_PATH}:/var/lib/postgresql/data
+    ports:
+      - "${PG_SRV_HOST_PORT}:${PG_SRV_CONT_PORT}"
+    networks:
+      - code_exp_network
+    restart: unless-stopped
+
+  code_exp_backend_service:
+    container_name: code_exp_backend_service
+    build:
+      context: $PWD
+      dockerfile: ./$DOCKER_FILE_PATH
+    env_file:
+      - $PWD/$ENV_FILE_PATH_SECRET
+      - $PWD/$ENV_FILE_PATH_PUBLIC
+    command: sh -c "echo \"run migrations\" && npm run start"
+    ports:
+      - ${BOT_HOST_PORT}:${BOT_CONT_PORT}
+    depends_on:
+      - code_exp_db
+    networks:
+      - code_exp_network
+
+  code_exp_pg_admin:
+    container_name: code_exp_pg_admin
+    image: dpage/pgadmin4:6.11
+    env_file:
+      - $PWD/$ENV_FILE_PATH_SECRET
+      - $PWD/$ENV_FILE_PATH_PUBLIC
+    ports:
+      - "5050:5050"
+    networks:
+      - code_exp_network
+    depends_on:
+      - code_exp_db
+    restart: always
+    volumes:
+      - $PWD/${PGADMIN_VLM_HOST_PATH:-./pgadmin_data}:/var/lib/pgadmin
+
+networks:
+  backend:
+    name: code_exp_network
