@@ -23,9 +23,11 @@ services:
     env_file:
       - $PWD/$ENV_FILE_PATH_SECRET
       - $PWD/$ENV_FILE_PATH_PUBLIC
-    command: sh -c "echo \"run migrations\" && npm run start"
+    command: sh -c "echo \"run migrations\" && npm run start:dev"
     ports:
-      - ${BOT_HOST_PORT}:${BOT_CONT_PORT}
+      - ${SERVER_PORT}:${SERVER_PORT}
+    volumes:
+      - ./:/usr/src/app
     depends_on:
       - code_exp_db
     networks:
@@ -48,5 +50,4 @@ services:
       - $PWD/${PGADMIN_VLM_HOST_PATH:-./pgadmin_data}:/var/lib/pgadmin
 
 networks:
-  backend:
-    name: code_exp_network
+  code_exp_network:

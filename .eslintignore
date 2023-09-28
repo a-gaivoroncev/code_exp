@@ -1,0 +1,9 @@
+node_modules
+build
+coverage
+package.json
+package-lock.json
+.eslintrc.json
+jest.config.js
+src/models/migrations
+src/models/config

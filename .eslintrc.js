@@ -74,6 +74,7 @@ module.exports = {
       {
         "after": true
       }
-    ]
+    ],
+    "eol-last": ["error", "always"]
   },
 };
