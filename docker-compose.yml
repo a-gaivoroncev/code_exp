@@ -23,7 +23,7 @@ services:
     env_file:
       - $PWD/$ENV_FILE_PATH_SECRET
       - $PWD/$ENV_FILE_PATH_PUBLIC
-    command: sh -c "echo \"run migrations\" && npm run start:dev"
+    command: sh -c "echo \"run migrations\" && npm run start:dev" # npm run start:$ENV_TYPE
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
     volumes:

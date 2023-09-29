@@ -66,7 +66,8 @@ module.exports = {
       "error",
       2,
       {
-        "SwitchCase": 1
+        "SwitchCase": 1,
+        "ignoredNodes": ["PropertyDefinition"] 
       }
     ],
     "comma-spacing": [
