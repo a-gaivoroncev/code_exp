@@ -18,7 +18,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@modules": ["modules/*"]
+      "@modules/*": ["modules/*"]
     }
   }
 }

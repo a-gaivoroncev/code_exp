@@ -1,5 +1,5 @@
 import { Column, CreatedAt, DataType, Default, ForeignKey, Is, Model, Table, UpdatedAt } from 'sequelize-typescript';
-import { Product } from '@modules/products/entities';
+import { Product } from '@modules/product/entities/product.entity';
 import { User } from '../../user/entities/user.entity';
 
 @Table({
