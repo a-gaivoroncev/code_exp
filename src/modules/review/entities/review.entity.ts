@@ -9,7 +9,7 @@ import { User } from '../../user/entities/user.entity';
 export class Review extends Model {
   @Default(DataType.UUIDV4)
   @Column({
-    type: DataType.UUIDV4,
+    type: DataType.UUID,
     primaryKey: true,
   })
   id: string;
@@ -29,7 +29,7 @@ export class Review extends Model {
     if (!(value >= 0 && value <= 5)) throw new Error('Value must be in range 0-5');
   })
   @Column({
-    type: DataType.TINYINT({}),
+    type: DataType.TINYINT,
   })
   rating: number;
 

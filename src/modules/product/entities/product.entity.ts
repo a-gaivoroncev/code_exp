@@ -7,7 +7,7 @@ import { Column, CreatedAt, DataType, Default, Model, Table, UpdatedAt } from 's
 export class Product extends Model {
   @Default(DataType.UUIDV4)
   @Column({
-    type: DataType.UUIDV4,
+    type: DataType.UUID,
     primaryKey: true,
   })
   id: string;

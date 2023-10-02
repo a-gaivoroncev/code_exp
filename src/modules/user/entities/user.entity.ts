@@ -19,7 +19,7 @@ import { Role } from './role.entity';
 export class User extends Model {
   @Default(DataType.UUIDV4)
   @Column({
-    type: DataType.UUIDV4,
+    type: DataType.UUID,
     primaryKey: true,
   })
   id: string;
@@ -49,7 +49,7 @@ export class User extends Model {
   birthdate: Date;
 
   @ForeignKey(() => Role)
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.SMALLINT })
   role_id: number;
 
   @CreatedAt
