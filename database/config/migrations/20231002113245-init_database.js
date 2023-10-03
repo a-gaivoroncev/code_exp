@@ -1,7 +1,7 @@
 'use strict';
 
 // eslint-disable-next-line
-const { STRING, UUID, TEXT, SMALLINT, ENUM, JSON, FLOAT } = require('sequelize').DataTypes;
+const { STRING, UUID, TEXT, SMALLINT, ENUM, JSON, FLOAT, BOOLEAN } = require('sequelize').DataTypes;
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -82,8 +82,12 @@ module.exports = {
           properties: {
             type: JSON,
           },
-          category_id: {
-            type: UUID,
+          category_name: {
+            type: STRING,
+          },
+          is_hidden: {
+            type: BOOLEAN,
+            defaultValue: false,
           },
           ...timestamp,
         },
@@ -120,13 +124,13 @@ module.exports = {
       );
 
       await queryInterface.createTable('categories', {
-        id,
         name: {
           type: STRING,
           allowNull: false,
+          primaryKey: true,
         },
-        category_id: {
-          type: UUID,
+        category_name: {
+          type: STRING,
         },
       });
     });

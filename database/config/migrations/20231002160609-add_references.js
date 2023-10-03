@@ -55,12 +55,12 @@ module.exports = {
       await queryInterface.addConstraint(
         'products',
         {
-          fields: ['category_id'],
+          fields: ['category_name'],
           type: 'FOREIGN KEY',
-          name: 'FK_products_category_id',
+          name: 'FK_products_category_name',
           references: {
             table: 'categories',
-            field: 'id',
+            field: 'name',
           },
           onDelete: 'no action',
           onUpdate: 'cascade',
@@ -71,12 +71,12 @@ module.exports = {
       await queryInterface.addConstraint(
         'categories',
         {
-          fields: ['category_id'],
+          fields: ['category_name'],
           type: 'FOREIGN KEY',
-          name: 'FK_categories_category_id',
+          name: 'FK_categories_category_name',
           references: {
             table: 'categories',
-            field: 'id',
+            field: 'name',
           },
           onDelete: 'no action',
           onUpdate: 'cascade',
@@ -97,10 +97,10 @@ module.exports = {
       await queryInterface.removeConstraint('reviews', 'FK_reviews_product_id', {
         transaction,
       });
-      await queryInterface.removeConstraint('products', 'FK_products_category_id', {
+      await queryInterface.removeConstraint('products', 'FK_products_category_name', {
         transaction,
       });
-      await queryInterface.removeConstraint('categories', 'FK_categories_category_id', {
+      await queryInterface.removeConstraint('categories', 'FK_categories_category_name', {
         transaction,
       });
     });

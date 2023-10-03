@@ -9,7 +9,7 @@ export class ProductService {
     return 'This action adds a new product';
   }
 
-  // Все товары с фильтрами (тип)
+  // Filters: категория
   findAllProducts() {
     return `This action returns all product`;
   }

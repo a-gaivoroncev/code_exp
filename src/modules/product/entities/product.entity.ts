@@ -34,6 +34,12 @@ export class Product extends Model {
   })
   properties: string;
 
+  @Default(false)
+  @Column({
+    type: DataType.BOOLEAN,
+  })
+  is_hidden: boolean;
+
   @CreatedAt
   created_at: Date;
 

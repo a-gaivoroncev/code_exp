@@ -1,26 +1,23 @@
 'use strict';
 
-// eslint-disable-next-line
-const uuid = require('uuid').v4;
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface) {
     await queryInterface.sequelize.transaction(async (transaction) => {
       await queryInterface.bulkInsert(
-        'categories',
+        'roles',
         [
           {
-            name: 'Одежда',
+            id: 0,
+            name: 'SUPERADMIN',
           },
           {
-            name: 'Электроника',
+            id: 1,
+            name: 'ADMIN',
           },
           {
-            name: 'Детские товары',
-          },
-          {
-            name: 'Продукты питания',
+            id: 2,
+            name: 'USER',
           },
         ],
         { transaction },
@@ -29,6 +26,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.bulkDelete('categories', null, {});
+    await queryInterface.bulkDelete('roles', null, {});
   },
 };
