@@ -1,4 +1,6 @@
 'use strict';
+
+// eslint-disable-next-line
 const { STRING, UUID, TEXT, SMALLINT, ENUM, JSON, FLOAT } = require('sequelize').DataTypes;
 
 /** @type {import('sequelize-cli').Migration} */
@@ -130,7 +132,7 @@ module.exports = {
     });
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.sequelize.transaction(async (transaction) => {
       await queryInterface.dropTable('users', { cascade: true }, { transaction });
       await queryInterface.dropTable('roles', { cascade: true }, { transaction });

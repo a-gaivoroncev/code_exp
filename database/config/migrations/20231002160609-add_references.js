@@ -2,7 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface) {
     await queryInterface.sequelize.transaction(async (transaction) => {
       await queryInterface.addConstraint(
         'users',
@@ -86,7 +86,7 @@ module.exports = {
     });
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.sequelize.transaction(async (transaction) => {
       await queryInterface.removeConstraint('users', 'FK_users_role_id', {
         transaction,
