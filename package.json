@@ -25,7 +25,7 @@
     "migrate:down": "npx sequelize-cli db:migrate:undo",
     "seed:up": "npx sequelize-cli db:seed:all",
     "seed:down": "npx sequelize-cli db:seed:undo",
-    "container:connect": "docker exec -it code_exp_backend_service sh" 
+    "container:connect": "docker exec -it code_exp_backend_service sh"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -38,7 +38,8 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "sequelize": "^6.33.0",
-    "sequelize-typescript": "^2.1.5"
+    "sequelize-typescript": "^2.1.5",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

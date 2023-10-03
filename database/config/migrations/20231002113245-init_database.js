@@ -1,6 +1,5 @@
 'use strict';
-
-const { STRING, UUIDV4, UUID, TEXT, INTEGER, SMALLINT, ENUM, JSON, FLOAT } = require('sequelize').DataTypes;
+const { STRING, UUID, TEXT, SMALLINT, ENUM, JSON, FLOAT } = require('sequelize').DataTypes;
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -8,7 +7,8 @@ module.exports = {
     const id = {
       primaryKey: true,
       type: UUID,
-      defaultValue: UUIDV4,
+      defaultValue: Sequelize.UUIDV4,
+      // defaultValue: Sequelize.literal('gen_random_uuid()'),
     };
 
     const timestamp = {
