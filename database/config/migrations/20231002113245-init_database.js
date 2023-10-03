@@ -80,6 +80,9 @@ module.exports = {
           properties: {
             type: JSON,
           },
+          category_id: {
+            type: UUID,
+          },
           ...timestamp,
         },
         { transaction },
@@ -113,15 +116,28 @@ module.exports = {
         },
         { transaction },
       );
+
+      await queryInterface.createTable('categories', {
+        id,
+        name: {
+          type: STRING,
+          allowNull: false,
+        },
+        category_id: {
+          type: UUID,
+        },
+      });
     });
   },
 
   async down(queryInterface, Sequelize) {
     await queryInterface.sequelize.transaction(async (transaction) => {
-      await queryInterface.dropTable('users', { transaction });
-      await queryInterface.dropTable('roles', { transaction });
-      await queryInterface.dropTable('products', { transaction });
-      await queryInterface.dropTable('reviews', { transaction });
+      await queryInterface.dropTable('users', { cascade: true }, { transaction });
+      await queryInterface.dropTable('roles', { cascade: true }, { transaction });
+      await queryInterface.dropTable('products', { cascade: true }, { transaction });
+      await queryInterface.dropTable('reviews', { cascade: true }, { transaction });
+      await queryInterface.dropTable('categories', { cascade: true }, { transaction });
+      await queryInterface.dropAllEnums({ transaction });
     });
   },
 };

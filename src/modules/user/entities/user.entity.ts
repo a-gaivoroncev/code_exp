@@ -1,5 +1,6 @@
 import {
   AllowNull,
+  BelongsTo,
   Column,
   CreatedAt,
   DataType,
@@ -51,6 +52,9 @@ export class User extends Model {
   @ForeignKey(() => Role)
   @Column({ type: DataType.SMALLINT })
   role_id: number;
+
+  @BelongsTo(() => Role)
+  role: Role;
 
   @CreatedAt
   created_at: Date;

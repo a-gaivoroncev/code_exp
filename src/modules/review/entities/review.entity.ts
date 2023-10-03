@@ -1,4 +1,15 @@
-import { Column, CreatedAt, DataType, Default, ForeignKey, Is, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  CreatedAt,
+  DataType,
+  Default,
+  ForeignKey,
+  Is,
+  Model,
+  Table,
+  UpdatedAt,
+} from 'sequelize-typescript';
 import { Product } from '@modules/product/entities/product.entity';
 import { User } from '../../user/entities/user.entity';
 
@@ -39,11 +50,17 @@ export class Review extends Model {
   })
   user_id: string;
 
+  @BelongsTo(() => User)
+  user: User;
+
   @ForeignKey(() => Product)
   @Column({
     type: DataType.UUIDV4,
   })
   product_id;
+
+  @BelongsTo(() => Product)
+  product: Product;
 
   @CreatedAt
   created_at: Date;

@@ -1,5 +1,6 @@
-import { AllowNull, Column, DataType, Model, Table } from 'sequelize-typescript';
+import { AllowNull, Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { USER_ROLES } from '@modules/user/types/types';
+import { User } from './user.entity';
 
 @Table({
   timestamps: false,
@@ -18,4 +19,7 @@ export class Role extends Model {
     type: DataType.ENUM('ADMIN', 'SUPERADMIN', 'USER'),
   })
   name: USER_ROLES;
+
+  @HasMany(() => User)
+  user: User;
 }

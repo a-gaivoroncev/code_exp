@@ -1,4 +1,5 @@
-import { Column, CreatedAt, DataType, Default, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import { Review } from '@modules/review/entities/review.entity';
+import { Column, CreatedAt, DataType, Default, HasMany, Model, Table, UpdatedAt } from 'sequelize-typescript';
 
 @Table({
   timestamps: true,
@@ -38,4 +39,7 @@ export class Product extends Model {
 
   @UpdatedAt
   updated_at: Date;
+
+  @HasMany(() => Review)
+  review: Review;
 }
