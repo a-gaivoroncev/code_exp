@@ -1,16 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { Product } from './entities/product.entity';
+import { PRODUCT_REPOSITORY } from '@consts';
 
 @Injectable()
 export class ProductService {
-  constructor() {}
-  create(createProductDto: CreateProductDto) {
+  constructor(
+    @Inject(PRODUCT_REPOSITORY)
+    private readonly productRepository: typeof Product,
+  ) {}
+
+  creatProduct(createProductDto: CreateProductDto) {
+    return this.productRepository.create(createProductDto);
     return 'This action adds a new product';
   }
 
-  // Filters: категория
-  findAllProducts() {
+  getAllProducts() {
     return `This action returns all product`;
   }
 
